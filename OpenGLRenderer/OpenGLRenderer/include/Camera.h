@@ -21,6 +21,7 @@ public:
 	void mouseControl(GLfloat mouseDeltaX, GLfloat mouseDeltaY, GLfloat elapsedTime);
 
 	glm::mat4 getViewMatrix();
+	glm::vec3 getCameraPosition();
 
 private:
 	GLfloat speedMove, speedTurn;

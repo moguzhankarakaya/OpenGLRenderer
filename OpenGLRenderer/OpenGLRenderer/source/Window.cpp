@@ -112,12 +112,12 @@ void Window::handleKeys(GLFWwindow* window, int key, int code, int action, int m
 		if (action == GLFW_PRESS)
 		{
 			windowPtrGLFW->keys[key] = true;
-			std::cout << "Key " << key << " is pressed." << std::endl;
+			//std::cout << "Key " << key << " is pressed." << std::endl;
 		}
 		else if (action == GLFW_RELEASE)
 		{
 			windowPtrGLFW->keys[key] = false;
-			std::cout << "Key " << key << " is released." << std::endl;
+			//std::cout << "Key " << key << " is released." << std::endl;
 		}
 	}
 	
@@ -139,7 +139,7 @@ void Window::handleMouse(GLFWwindow* window, double xPosition, double yPosition)
 	windowPtrGLFW->mouseX = xPosition;
 	windowPtrGLFW->mouseY = yPosition;
 
-	std::cout << "X : " << windowPtrGLFW->mouseX << " Y: " << windowPtrGLFW->mouseY << std::endl;
+	//std::cout << "X : " << windowPtrGLFW->mouseX << " Y: " << windowPtrGLFW->mouseY << std::endl;
 }
 
 Window::~Window()
