@@ -18,7 +18,9 @@ public:
 	~Texture();
 
 private:
+	bool enableAF;
 	GLuint textureID;
+	float AFSamplingRate;
 	int width, height, bitDepth;
 
 	const char* textureFilePath;

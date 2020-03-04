@@ -88,22 +88,25 @@ void CreateTriangle()
 
 void CreatePyramid()
 {
-	unsigned int indices[] = { 0, 3, 1,
-							   1, 3, 2,
-							   2, 3, 0,
-							   0, 1, 2 };
+	unsigned int indices[] = { 0, 2, 1,
+							   1, 2, 3,
+							   0, 1, 4,
+							   1, 3, 4,
+							   3, 2, 4,
+							   2, 0, 4, };
 						 //  x      y     z      u      v      nx     ny     nz
 	GLfloat vertices[] = { -1.0f, -1.0f, 0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-						    0.0f, -1.0f, 1.0f,  0.5f,  0.0f,  0.0f,  0.0f,  0.0f,
-							1.0f, -1.0f, 0.0f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-							0.0f,  1.0f, 0.0f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, };
+						    1.0f, -1.0f, 0.0f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+						   -1.0f, -1.0f, 2.0f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+							1.0f, -1.0f, 2.0f,  1.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+							0.0f,  0.5f, 1.0f,  0.5f,  0.5f,  0.0f,  0.0f,  0.0f, };
 
-	calcAverageNormals(indices, 12, vertices, 32, 8, 5);
+	calcAverageNormals(indices, 18, vertices, 40, 8, 5);
 
 	Mesh* pyramid1 = new Mesh();
-	pyramid1->CreateMesh(vertices, indices, 32, 12);
+	pyramid1->CreateMesh(vertices, indices, 40, 18);
 	Mesh* pyramid2 = new Mesh();
-	pyramid2->CreateMesh(vertices, indices, 32, 12);
+	pyramid2->CreateMesh(vertices, indices, 40, 18);
 
 	meshes.push_back(pyramid1);
 	meshes.push_back(pyramid2);
@@ -123,8 +126,8 @@ int main()
 
 	fpsCamera = new Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 20.0f); 
 
-	sunLight = new Light(1.0f,  1.0f,  1.0f, 0.1f, 
-						 2.0f, -1.0f, -2.0f, 0.1f);
+	sunLight = new Light(1.0f,  1.0f,  1.0f, 0.5f, 
+						 2.0f, -1.0f, -2.0f, 1.0f);
 
 	metalicMaterial = new Material(1.0f, 32.0f);
 	dullMaterial    = new Material(1.0f, 4.0f);
@@ -194,16 +197,16 @@ int main()
 
 			model = glm::mat4();
 			model = glm::translate(model, glm::vec3(-0.5f, 0.5f, -2.0f));
-			model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
-			model = glm::rotate(model, 15.0f * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+			//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+			//model = glm::rotate(model, 15.0f * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 			textures[0]->UseTexture();
 			meshes[0]->RenderMesh();
 
 			model = glm::mat4();
-			model = glm::translate(model, glm::vec3(0.5f, -0.5f, -2.0f));
-			model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
-			model = glm::rotate(model, 15.0f * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+			model = glm::translate(model, glm::vec3(1.5f, -1.5f, -2.0f));
+			//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+			//model = glm::rotate(model, 15.0f * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 			textures[1]->UseTexture(); 
 			meshes[1]->RenderMesh();
